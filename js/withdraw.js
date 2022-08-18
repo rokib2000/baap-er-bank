@@ -9,23 +9,35 @@ document.getElementById("withdraw-submit").addEventListener("click", function ()
   //clear input field
   withdrawFieldElement.value = "";
 
+  // input validation
+  if (isNaN(withdrawFieldAmount)) {
+    alert("Please provide a valid number");
+    return;
+  }
+
   // get value form withdraw total
   const withdrawTotalElement = document.getElementById("withdraw-total");
   const withdrawTotalString = withdrawTotalElement.innerText;
   //string to number
   const withdrawTotalAmount = parseFloat(withdrawTotalString);
 
-  // calculation withdraw total
-  const currentWithdrawTotal = withdrawTotalAmount + withdrawFieldAmount;
-
-  // set the value in the page
-  withdrawTotalElement.innerText = currentWithdrawTotal;
-
   // get balance total amount
   const balanceTotalElement = document.getElementById("balance-total");
   const balanceTotalString = balanceTotalElement.innerText;
   //string to number
   const balanceTotal = parseFloat(balanceTotalString);
+
+  //balance validation
+  if (withdrawFieldAmount > balanceTotal) {
+    alert("Baap er bank a ato tk nai");
+    return;
+  }
+
+  // calculation withdraw total
+  const currentWithdrawTotal = withdrawTotalAmount + withdrawFieldAmount;
+
+  // set the value in the page
+  withdrawTotalElement.innerText = currentWithdrawTotal;
 
   // calculation balance total
   const currentBalanceTotal = balanceTotal - withdrawFieldAmount;

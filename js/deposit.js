@@ -9,6 +9,12 @@ document.getElementById("deposit-submit").addEventListener("click", function () 
   // clear input field
   inputDepositAmount.value = "";
 
+  // input validation
+  if (isNaN(depositAmount)) {
+    alert("Please provide a valid number");
+    return;
+  }
+
   // get amount deposit total
   const depositTotalElement = document.getElementById("deposit-total");
   const depositTotalString = depositTotalElement.innerText;
